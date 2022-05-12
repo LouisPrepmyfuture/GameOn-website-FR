@@ -56,7 +56,11 @@
         <div class="content">
           <span class="close"></span>
           <div class="modal-body">
+            <div id="content-message" class="merci" style="display:none">
+              <p id="message"></p>
+            </div>
             <form
+              id="reserve"
               name="reserve"
               action="index.html"
               method="get"
@@ -64,7 +68,8 @@
             >
               <div
                 class="formData">
-                <label>Prénom</label><br>
+                <label for="first">Prénom</label><br>
+
                 <input
                   class="text-control"
                   type="text"
@@ -91,6 +96,7 @@
                   type="email"
                   id="email"
                   name="email"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
                 /><br>
               </div>
               <div
@@ -110,7 +116,7 @@
               </div>
               <p class="text-label">A quel tournoi souhaitez-vous participer cette année ?</p>
               <div
-                class="formData">
+                class="formData" id="location">
                 <input
                   class="checkbox-input"
                   type="radio"
@@ -184,10 +190,9 @@
                 <input
                   class="checkbox-input"
                   type="checkbox"
-                  id="checkbox1"
-                  checked
+                  id="cdn"
                 />
-                <label class="checkbox2-label" for="checkbox1" required>
+                <label class="checkbox2-label" for="cdn" required>
                   <span class="checkbox-icon"></span>
                   J'ai lu et accepté les conditions d'utilisation.
                 </label>
