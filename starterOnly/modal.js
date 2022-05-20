@@ -30,33 +30,9 @@ function closeModal() {
   contentMessage.style.display = "none";
 }
 
-// lance un message flash
-function showFlash(valeur) { 
-  let p = document.getElementById("message");
-  p.innerHTML = valeur
-  contentMessage.style.display = "flex";
-  form.style.display = "none";
-  launchModal()
-}
-
-
-// si il y a un message flash, affiche le message
-if(sessionStorage.flash === 1 ){
-  showFlash(sessionStorage.message)
-  sessionStorage.flash = 0;
-  sessionStorage.message = "";
-}
-
-// supprime une list d'element
-function supListElement (list){
-  for(let i = 0;list.length > i; i++){
-    list[i].remove()
-  }
-}
 
 // regarde si un check est check dans une liste de check
 function isChecked(list){
-  console.log(list)
   for(let i = 0;list.length > i; i++){
     if(list[i].checked){
       return true;
@@ -65,6 +41,19 @@ function isChecked(list){
   return false
 }
 
+// affiche les erreuur du formulaire
+ function showErrorForm(element, message) {
+  element.parentNode.dataset.error = message ; 
+  element.parentNode.dataset.errorVisible = "true" ; 
+  element.parentNode.classList.add("erreur");
+ }
+
+ function cleanErrorForm(element) {
+  element.dataset.error = "" ; 
+  element.dataset.errorVisible = "false" ; 
+  element.classList.remove("erreur");
+ }
+
 // regarde si un formulaire est valide ou non
 function validate(){
   let first = document.getElementById("first");
@@ -72,48 +61,54 @@ function validate(){
   let email = document.getElementById("email");
   let location = document.getElementsByName("location");
   let cdn = document.getElementById("cdn");
-  let Erreur = ""
-  Erreur = new Object();
+  let birthdate = document.getElementById("birthdate");
+  let reguliareEmail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
+  let nbError = 0;
 
-  //sup les erreur presedante 
-    supListElement(document.querySelectorAll(".erreur"))
+  const formDatas = document.querySelectorAll(".formData");
 
+  for(let i = 0;formDatas.length > i; i++){
+    console.log(cleanErrorForm(formDatas[i]))
+    cleanErrorForm(formDatas[i]);
+  }
+  
   
   if(!first.value || first.value.length < 1 ){
-    Erreur.first = "Veuillez entrer 2 caractères ou plus pour le champ du prénom"
-  }
-
-  if(!last.value){
-    Erreur.last = "Veuillez entrer  le champ du nom"
-  }
-
-
-  if(!email.value){
-    Erreur.email = "Veuillez entrer l'email"
-  }
-
-  if(isChecked(location) == false){
-    Erreur.location = "Veuillez choisir un tournoi."
-  }
-  if(cdn.checked  == false){
-    Erreur.cdn = "Veuillez accepter le cdv"
-    console.log(Erreur)
-  }
-
-  if( Object.keys(Erreur).length != 0){
-    e = document.querySelectorAll(".erreur")
+    showErrorForm(first, "Veuillez entrer 2 caractères ou plus pour le champ du prénom")
+    nbError++
+  } 
+  if(!last.value || last.length < 1 ){
+    showErrorForm(last, "Veuillez entrer 2 caractères ou plus pour le champ du nom")
+    nbError++
+  } 
   
-    Object.entries(Erreur).forEach(([clé, valeur]) => {
-       let newSpan = document.createElement("span")
-       newSpan.className = "erreur";
-       newSpan.innerHTML = valeur
-       document.getElementById(clé).after(newSpan)  
-    });
+  
+  if(!email.value){
+    showErrorForm(email, "Vous devez entrer votre date de naissance.")
+    nbError++
+  }else if(!reguliareEmail.test(email.value)){
+    showErrorForm(email, " L'adresse mail n'est pas valide")
+    nbError++
+  }
+     
+  if(!birthdate.value){
+    showErrorForm(birthdate, "Vous devez entrer votre date de naissance.")
+    nbError++
+  }
+  if(isChecked(location) == false){
+    showErrorForm(document.getElementById("location1"), "Vous devez choisir une option.")
+    nbError++
+  }
+  
+  if(cdn.checked  == false){
+    showErrorForm(cdn, "Vous devez vérifier que vous acceptez les termes et conditions.")
+    nbError++
+  }
+  console.log(nbError)
+  if(nbError > 0){
     return false;
   }
-
-  sessionStorage.setItem('flash', 1);
-  sessionStorage.setItem('message', "message test");
-
+    
   return true;
+    
 }
