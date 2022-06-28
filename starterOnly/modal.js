@@ -31,7 +31,7 @@ function closeModal() {
 }
 
 
-// regarde si un check est check dans une liste de check
+// regarde si un check est check 
 function isChecked(list){
   for(let i = 0;list.length > i; i++){
     if(list[i].checked){
@@ -48,6 +48,7 @@ function isChecked(list){
   element.parentNode.classList.add("erreur");
  }
 
+//  nettoi les erreurs du formulaire
  function cleanErrorForm(element) {
   element.dataset.error = "" ; 
   element.dataset.errorVisible = "false" ; 
@@ -72,7 +73,6 @@ function validate(event){
   const formDatas = document.querySelectorAll(".formData");
 
   for(let i = 0;formDatas.length > i; i++){
-    console.log(cleanErrorForm(formDatas[i]))
     cleanErrorForm(formDatas[i]);
   }
   
@@ -85,53 +85,52 @@ function validate(event){
     nbError++
   }
 
-  // if(!last.value || last.length < 1 ){
-  //   showErrorForm(last, "Veuillez entrer 2 caractères ou plus pour le champ du nom")
-  //   nbError++
-  // } else if(!reguliaretxt.test(last.value)){
-  //   showErrorForm(last, "Le Nom n'est pas valide")
-  //   nbError++
-  // }
+  if(!last.value || last.length < 1 ){
+    showErrorForm(last, "Veuillez entrer 2 caractères ou plus pour le champ du nom")
+    nbError++
+  } else if(!reguliaretxt.test(last.value)){
+    showErrorForm(last, "Le Nom n'est pas valide")
+    nbError++
+  }
   
   
-  // if(!email.value){
-  //   showErrorForm(email, "Vous devez entrer votre date de naissance.")
-  //   nbError++
-  // }else if(!reguliareEmail.test(email.value)){
-  //   showErrorForm(email, " L'adresse mail n'est pas valide")
-  //   nbError++
-  // }
+  if(!email.value){
+    showErrorForm(email, "Vous devez entrer votre date de naissance.")
+    nbError++
+  }else if(!reguliareEmail.test(email.value)){
+    showErrorForm(email, " L'adresse mail n'est pas valide")
+    nbError++
+  }
      
-  // if(!birthdate.value){
-  //   showErrorForm(birthdate, "Vous devez entrer votre date de naissance.")
-  //   nbError++
-  // }else if(!reguliareDate.test(birthdate.value)){
-  //     showErrorForm(birthdate, " L'adresse mail n'est pas valide (ex: 01/12/2020)")
-  //     nbError++
-  //   }
+  if(!birthdate.value){
+    showErrorForm(birthdate, "Vous devez entrer votre date de naissance.")
+    nbError++
+  }else if(!reguliareDate.test(birthdate.value)){
+      showErrorForm(birthdate, " L'adresse mail n'est pas valide (ex: 01/12/2020)")
+      nbError++
+    }
 
-  // if(isChecked(location) == false){
-  //   showErrorForm(document.getElementById("location1"), "Vous devez choisir une option.")
-  //   nbError++
-  // }
+  if(isChecked(location) == false){
+    showErrorForm(document.getElementById("location1"), "Vous devez choisir une option.")
+    nbError++
+  }
   
-  // if(cdn.checked  == false){
-  //   showErrorForm(cdn, "Vous devez vérifier que vous acceptez les termes et conditions.")
-  //   nbError++
-  // }
-  // console.log(nbError)
+  if(cdn.checked  == false){
+    showErrorForm(cdn, "Vous devez vérifier que vous acceptez les termes et conditions.")
+    nbError++
+  }
+  
   if(nbError > 0){
     return false;
   }
   
  
   return  showMesage();
-
     
 }
 
 
-
+// Affiche le message de validation
  function showMesage(){
   for(let i = 0;formData.length > i; i++){
     formData[i].style.opacity = 0;
@@ -139,10 +138,8 @@ function validate(event){
   if(message == true){
     return true
   }
-
   message = true
   document.getElementById("valid").style.display = "block" ;
-
   return false;
 }
 
