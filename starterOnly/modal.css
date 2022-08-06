@@ -30,15 +30,13 @@ img {
 }
 
 .topnav {
-  overflow: hidden;
-  margin: 3.5%;
+  display: flex;
+  height: 90px;
+  margin-top: 5px;
+  justify-content: space-between;
+  align-items: center;
 }
-.header-logo {
-    float: left;
-}
-.main-navbar {
-    float: right;
-}
+
 .topnav a {
   float: left;
   display: block;
@@ -67,51 +65,6 @@ img {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-  }
-}
-
-@media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
-  .topnav.responsive .icon {
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  .topnav.responsive a {
-    float: none;
-    display: block;
-    text-align: left;
-  }
-
-  .topnav{
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    margin: 0;
-    background: #fff;
-    padding: 20px;
-  }
-
-}
-
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
-  .topnav a.icon {
-    float: right;
-    display: block;
-    margin-top: -15px;
-  }
-} 
-
 main {
   font-size: 130%;
   font-weight: bolder;
@@ -119,11 +72,9 @@ main {
   padding-top: 0.5vw;
   padding-left: 2vw;
   padding-right: 2vw;
-  margin: 1px 20px 15px;
+  margin: 91px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -178,6 +129,7 @@ main {
   width: 100%;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
+  margin-top: 90Px;
 }
 
 .modalFlash {
@@ -193,7 +145,7 @@ main {
 }
 
 .content {
-  margin: 14% auto;
+  margin: 0 auto;
   width: 100%;
   max-width: 500px;
   animation-name: modalopen;
@@ -449,7 +401,6 @@ input {
   color: #fff;
   position: relative;
   text-align: left;
-  min-width: 424px;
 }
 .hero-content::after {
   content: "";
@@ -508,6 +459,16 @@ footer {
   padding-right: 2vw;
   margin: 0 20px;
 }
+
+@keyframes modalopen {
+  from {
+    opacity: 0;
+    transform: translateY(-150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media screen and (max-width: 800px) {
   .hero-section {
     display: block;
@@ -525,7 +486,7 @@ footer {
     display: none;
   }
   .hero-headline {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     white-space: normal;
   }
   .hero-text {
@@ -547,14 +508,49 @@ footer {
   }
 }
 
-
-@keyframes modalopen {
-  from {
-    opacity: 0;
-    transform: translateY(-150px);
-  }
-  to {
-    opacity: 1;
+@media screen and (max-width: 1023px) {
+  .topnav a {
+    padding: 12px 9px;
+    margin: 0px;
+    font-size: 15px;
   }
 }
 
+@media screen and (max-width: 800px) {
+  .topnav a {display: none;}
+  .topnav a.icon {
+    float: right;
+    display: block;
+    font-size: 30px;
+  }
+
+  .topnav.responsive {position: relative;}
+  .topnav.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .topnav.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+
+  .topnav{
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    background: #fff;
+    padding: 20px;
+  }
+}
+
+ @media screen and (max-width: 540px) {
+  .topnav a {display: none;}
+  .hero-headline {
+    font-size: 2.5rem;
+  }
+}

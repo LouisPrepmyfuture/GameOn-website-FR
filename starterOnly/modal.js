@@ -28,6 +28,9 @@ function closeModal() {
   modalbg.style.display = "none";
   form.style.display = "block";
   contentMessage.style.display = "none";
+   for(let i = 0;formData.length > i; i++){
+    formData[i].style.opacity = 0;
+  }
 }
 
 
@@ -75,6 +78,8 @@ function validate(event){
   for(let i = 0;formDatas.length > i; i++){
     cleanErrorForm(formDatas[i]);
   }
+
+  // gatheck007@gmail.com
   
   
   if(!first.value || first.value.length < 1 ){
@@ -123,8 +128,6 @@ function validate(event){
   if(nbError > 0){
     return false;
   }
-  
- 
   return  showMesage();
     
 }
@@ -144,5 +147,5 @@ function validate(event){
 }
 
   
-
+ 
 
