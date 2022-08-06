@@ -83,8 +83,6 @@ function validate(event){
   for(let i = 0;formDatas.length > i; i++){
     cleanErrorForm(formDatas[i]);
   }
-
-  // gatheck007@gmail.com
   
   
   if(!first.value || first.value.length < 1 ){
