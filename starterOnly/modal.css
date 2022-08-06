@@ -18,6 +18,16 @@ body {
   font-size: 18px;
   max-width: 1300px;
   margin: 0 auto;
+  height: 100%;
+}
+
+.content-topnav{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1000;
 }
 
 p {
@@ -124,12 +134,12 @@ main {
   position: fixed;
   z-index: 1;
   left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
+  top: 90px;
+  bottom: 0;
+  right: 0;
   overflow: auto;
   background-color: rgba(26, 39, 156, 0.4);
-  margin-top: 90Px;
+
 }
 
 .modalFlash {
@@ -470,6 +480,9 @@ footer {
   }
 }
 @media screen and (max-width: 800px) {
+  main{
+    margin-top: 90px;
+  }
   .hero-section {
     display: block;
     box-shadow: unset;

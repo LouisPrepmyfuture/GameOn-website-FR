@@ -10,11 +10,11 @@ function editNav() {
 // DOM Elements
 const modalbg = document.querySelector(".bground");
 const modalBtn = document.querySelectorAll(".modal-btn");
-const modalBtnClose = document.querySelectorAll(".close");
+const modalBtnClose = document.querySelectorAll(".closeAll");
 const formData = document.querySelectorAll(".formData");
 let form = document.getElementById("reserve");
-let contentMessage = document.getElementById("content-message");
 let message = false;
+let valids = document.querySelectorAll(".valid") ;
 // launch modal event
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));
 modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
@@ -22,15 +22,18 @@ modalBtnClose.forEach((btn) => btn.addEventListener("click", closeModal));
 // launch modal form
 function launchModal() {
   modalbg.style.display = "block";
+  for(let i = 0;formData.length > i; i++){
+    formData[i].style.opacity = 1;
+  }
 }
 // close modal
 function closeModal() {
   modalbg.style.display = "none";
   form.style.display = "block";
-  contentMessage.style.display = "none";
-   for(let i = 0;formData.length > i; i++){
-    formData[i].style.opacity = 0;
-  }
+
+  for(let i = 0;valids.length > i; i++){
+   valids[i].style.display = "none"
+ }
 }
 
 
@@ -67,12 +70,14 @@ function validate(event){
   let location = document.getElementsByName("location");
   let cdn = document.getElementById("cdn");
   let birthdate = document.getElementById("birthdate");
+  let formReserve = document.getElementById("reserve");
   let reguliareEmail = /^(([^<>()[]\.,;:s@]+(.[^<>()[]\.,;:s@]+)*)|(.+))@(([[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}.[0-9]{1,3}])|(([a-zA-Z-0-9]+.)+[a-zA-Z]{2,}))$/;
   let reguliareDate = /^(?:(?:1[6-9]|[2-9]\d)?\d{2})(?:(?:(\/|-|\.)(?:0?[13578]|1[02])\1(?:31))|(?:(\/|-|\.)(?:0?[13-9]|1[0-2])\2(?:29|30)))$|^(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00)))(\/|-|\.)0?2\3(?:29)$|^(?:(?:1[6-9]|[2-9]\d)?\d{2})(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:0?[1-9]|1\d|2[0-8])$/gm
   let reguliareNb = /[0-9]/;
   let reguliaretxt = /[a-zA-Z]/
   let nbError = 0;
-
+  let inputs = formReserve.querySelectorAll("input")
+  
   const formDatas = document.querySelectorAll(".formData");
 
   for(let i = 0;formDatas.length > i; i++){
@@ -124,10 +129,17 @@ function validate(event){
     showErrorForm(cdn, "Vous devez vérifier que vous acceptez les termes et conditions.")
     nbError++
   }
-  
+  const checkbox = document.querySelectorAll(".checkbox-input");
   if(nbError > 0){
     return false;
   }
+  for(let i = 0;inputs.length > i; i++){
+    inputs[i].value = ""
+  }
+  for(let i = 0;checkbox.length > i; i++){
+    checkbox[i].checked = false;
+  }
+
   return  showMesage();
     
 }
@@ -142,7 +154,9 @@ function validate(event){
     return true
   }
   message = true
-  document.getElementById("valid").style.display = "block" ;
+   for(let i = 0;valids.length > i; i++){
+    valids[i].style.display = "block"
+  }
   return false;
 }
 

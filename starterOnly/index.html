@@ -12,10 +12,13 @@
     />
   </head>
   <body>
-    <div class="topnav" id="myTopnav">
-      <div class="header-logo">
-      <img alt="logo" src="Logo.png" width="auto" height="auto" />
-    </div>
+    <div class="content-topnav">
+      <div class="topnav" id="myTopnav">
+        <div class="header-logo">
+        <img alt="logo" src="Logo.png" width="auto" height="auto" />
+      </div>
+   
+  
     <div class="main-navbar">
       
       <a href="#" class="active"><span>Accueil</span></a>
@@ -26,6 +29,7 @@
       <a href="javascript:void(0);" class="icon" onclick="editNav()">
         <i class="fa fa-bars"></i>
       </a>
+    </div>
     </div>
     </div>
   </div>
@@ -54,9 +58,9 @@
 
       <div class="bground">
         <div class="content">
-          <span class="close"></span>
+          <span class="close closeAll"></span>
           <div class="modal-body">
-            <p id="valid" class="merci" style="display:none;">Merci ! Votre réservation a été reçue.</p>
+            <p class="merci valid" style="display:none;">Merci ! Votre réservation a été reçue.</p>
             <form
               id="reserve"
               name="reserve"
@@ -201,13 +205,14 @@
                 </label>
                 <br>
               </div>
-              <input
+              <div class="formData">
+                <button
                 class="btn-submit"
                 type="submit"
-                class="button"
-                value="C'est parti"
-              />
+                >C'est parti</button>
+              </div>
             </form>
+            <button class="btn-submit valid closeAll" style="display:none;">C'est parti</button>
           </div>
         </div>
       </div>
